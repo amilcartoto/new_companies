@@ -13,7 +13,7 @@ export function CardSummary(props: CardSummaryProps) {
 
   return (
     <div
-      className="border border-gray-300 rounded-lg p-4 bg-white hover:shadow-lg transition-shadow duration-200"
+      className="border border-gray-300 rounded-lg p-5 m-1 bg-white hover:shadow-lg transition-shadow duration-200"
     >
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
@@ -27,7 +27,7 @@ export function CardSummary(props: CardSummaryProps) {
       </div>
       <div
         className={cn(
-          `flex items-center gap-1 text-xs text-black rounded-lg mt-4 px-3 py-1 bg-gray-100`
+          `flex items-center gap-1 text-xs text-white rounded-lg mt-4 px-3 py-1 bg-black`
         )}
       >
         {average}%
