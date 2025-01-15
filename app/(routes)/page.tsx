@@ -29,22 +29,19 @@ export const dataCardsSummary = [
 
 const Home = () => {
   return (
-    <div>
+    <div className="p-2 m-3">
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-x-20">
-    <div>  
-      {dataCardsSummary.map(({icon, total, average, title,tooltipText}) => (
-        <CardSummary
-      icon={icon}
-      key={title}
-      total={total}
-      average={average}
-      title={title}
-      tooltipText={tooltipText}
-      />
-      ))}
+        {dataCardsSummary.map(({ icon, total, average, title, tooltipText }) => (
+          <CardSummary
+            key={title}
+            icon={icon}
+            total={total}
+            average={average}
+            title={title}
+            tooltipText={tooltipText}
+          />
+        ))}
       </div>
-      </div>
-      {/* <Sidebar /> */}
     </div>
   );
 };
