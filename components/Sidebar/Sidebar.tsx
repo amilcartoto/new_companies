@@ -18,7 +18,7 @@ const Sidebar = forwardRef<HTMLDivElement, { isOpen: boolean }>(({ isOpen }, ref
       <h2 className="text-lg font-bold mb-4">Menú</h2>
       <ul className="space-y-2">
         <li>
-          <a href="/" className="text-blue-500 hover:underline">
+          <a href="/" className="text-blue-400 hover:underline">
             Inicio
           </a>
         </li>
