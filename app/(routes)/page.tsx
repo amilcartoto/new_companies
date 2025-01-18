@@ -29,6 +29,8 @@ export const dataCardsSummary = [
 
 const Home = () => {
   return (
+    <div>
+    <h2 className="text-2xl mb-5">Dashboard</h2>
     <div className="p-2 m-3">
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-x-20">
         {dataCardsSummary.map(({ icon, total, average, title, tooltipText }) => (
@@ -42,6 +44,7 @@ const Home = () => {
           />
         ))}
       </div>
+    </div>
     </div>
   );
 };

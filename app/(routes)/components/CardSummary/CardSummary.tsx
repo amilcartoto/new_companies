@@ -27,7 +27,7 @@ export function CardSummary(props: CardSummaryProps) {
       </div>
       <div
         className={cn(
-          `flex items-center gap-1 text-xs text-white rounded-lg mt-4 px-3 py-1 bg-black`
+          `flex items-center gap-1 text-xs text-white rounded-lg h-[20px] mt-3 px-2 py-1 bg-black dark:bg-secondary`
         )}
       >
         {average}%
