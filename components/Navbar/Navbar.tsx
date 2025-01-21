@@ -1,7 +1,8 @@
-import { Menu, Search } from "lucide-react"
+import { Menu, Search, } from "lucide-react"
 import { Input } from "../ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet"
 import { UserButton } from "@clerk/nextjs"
+import SidebarRoutes from "../SidebarRoutes/SidebarRoutes"
 
 
 export default function Navbar() {
@@ -14,7 +15,7 @@ export default function Navbar() {
                     <Menu/>
                 </SheetTrigger>
                 <SheetContent side="left">
-                    <p>Sidebar Rutes</p>
+                    <SidebarRoutes/>
                 </SheetContent>
             </Sheet>
         </div>
