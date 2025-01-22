@@ -1,10 +1,10 @@
 "use client";
 
-import { useTheme } from "../Theme-context/theme-context";
+import { useTheme } from "next-themes";
 import { Sun, Moon, Zap } from "lucide-react";
 
 const ThemeToggleButton = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const getIcon = () => {
     switch (theme) {
@@ -20,9 +20,9 @@ const ThemeToggleButton = () => {
   return (
     <button
       onClick={() =>
-        toggleTheme(theme === "light" ? "dark" : theme === "dark" ? "solarized" : "light")
+        setTheme(theme === "light" ? "dark" : theme === "dark" ? "solarized" : "light")
       }
-      className="m-2 left-8  rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+      className="m-2 left-8  rounded-full hover:bg-gray-400 dark:hover:bg-gray-500 transition"
       title="Cambiar tema"
     >
       {getIcon()}
