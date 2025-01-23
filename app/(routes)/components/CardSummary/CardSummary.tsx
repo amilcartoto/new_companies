@@ -2,7 +2,7 @@
 
 "use client";
 
-import CustomIcon from "@/components/CustomIcon/CustomIcon";
+import { CustomIcon } from "@/components/CustomIcon/CustomIcon";
 import { CardSummaryProps } from "./CardSummary.types";
 import { MoveDownRight, MoveUpRight, TrendingUp } from "lucide-react";
 import { CustomTooltip } from "@/components/CustomTooltip";

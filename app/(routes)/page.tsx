@@ -1,8 +1,9 @@
 "use client";
 
-import { LastCustomers } from "@/components/LastCustomers";
+import { LastCustomers } from "./LastCustomers";
 import { CardSummary } from "./components/CardSummary/";
 import { BookOpenCheck, UsersRound, Waypoints } from "lucide-react";
+import { Salesdistibutors } from "./components/Salesdistributors";
 
 export const dataCardsSummary = [
   {
@@ -46,7 +47,7 @@ const Home = () => {
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-2 md:gap-x-10">
         <LastCustomers />
-        <p>Sales Distributors</p>
+        <Salesdistibutors />
       </div>
     </div>
     

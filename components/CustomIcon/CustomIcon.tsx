@@ -2,7 +2,7 @@
 
 import { CustomIconProps } from "./CustomIcon.type"
 
-function CustomIcon(props: CustomIconProps) {
+export function CustomIcon(props: CustomIconProps) {
   const{icon: Icon} = props
 
 
@@ -13,4 +13,3 @@ function CustomIcon(props: CustomIconProps) {
   )
 }
 
-export default CustomIcon

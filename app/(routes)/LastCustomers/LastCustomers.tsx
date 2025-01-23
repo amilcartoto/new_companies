@@ -1,5 +1,7 @@
+"use client"
+
 import { Building } from "lucide-react";
-import CustomIcon from "../CustomIcon/CustomIcon";
+import { CustomIcon } from "../../../components/CustomIcon";
 import { CustomersTable } from "../CustomersTable";
 
 
