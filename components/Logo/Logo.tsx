@@ -11,13 +11,14 @@ export function Logo() {
       onClick={() => router.push("/")}
     >
       <Image
-        src="/logoipsum-285.svg"
+        src="/public/logoipsum-285 (3).svg"
         alt="Logo"
+        layout="fixed"
         width={30}
         height={30}
         priority
       />
-      <h1 className="font-bold text-xl ">Tarre Manager</h1>
+      <h1 className="font-bold text-xl ">DashBoard</h1>
     </div>
   );
 }
