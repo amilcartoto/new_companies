@@ -11,9 +11,8 @@ export function Logo() {
       onClick={() => router.push("/")}
     >
       <Image
-        src="/public/logoipsum-285 (3).svg"
+        src="/logoipsum.svg"
         alt="Logo"
-        layout="fixed"
         width={30}
         height={30}
         priority

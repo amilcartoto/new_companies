@@ -2,6 +2,9 @@
 import Navbar from "@/components/Navbar/Navbar"; // Importa Navbar
 import { Sidebar } from "@/components/Sidebar";
 
+
+
+
 export default function Layout({ children }: { children: React.ReactNode }) {
  
   return (
