@@ -1,31 +1,61 @@
-
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 import { auth } from "@clerk/nextjs/server";
 
 const f = createUploadthing();
 
-const handlerAuth = async () => {
+const handleAuth = async () => {
     const { userId } = await auth();
 
     if (!userId) {
         throw new Error("Unauthorized");
     }
 
-    return {};
+    return { userId };
 };
 
-handlerAuth().catch(console.error); 
-
-
+handleAuth().catch(console.error); 
 
 export const ourFileRouter = {
-    profileImage: f({ image: { maxFileSize: "4MB", maxFileCount: 1 } })
-      .onUploadComplete(({ file }) => {
-        console.log("✅ File uploaded:", file);
-            })
-      } satisfies FileRouter;
+    imageUploader: f({
+        image: {
+            maxFileSize: "4MB",
+            maxFileCount: 1
+        }
+    })
+      .middleware(async () => {
+        const { userId } = await handleAuth();
+        return { userId };
+      })
+      .onUploadComplete(async ({ metadata, file }) => {
+        console.log("Upload complete for userId:", metadata.userId);
+        console.log("File URL:", file.url);
+        
+        return { 
+          url: file.url,
+          userId: metadata.userId 
+        };
+      }),
 
-;
+    documentUploader: f({
+        pdf: {
+            maxFileSize: "8MB",
+            maxFileCount: 1
+        }
+    })
+      .middleware(async () => {
+        const { userId } = await handleAuth();
+        return { userId };
+      })
+      .onUploadComplete(async ({ metadata, file }) => {
+        console.log("Upload complete for userId:", metadata.userId);
+        console.log("File URL:", file.url);
+        
+        return { 
+          url: file.url,
+          userId: metadata.userId 
+        };
+      }),
+} satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
