@@ -14,7 +14,7 @@ export default function SignUpPage() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     // Simulate user registration
-    const token = generateToken({ email, nationality, city });
+    const token = generateToken(JSON.stringify({ email, nationality, city }));
     localStorage.setItem('token', token);
 
     // Call the server-side API to send the confirmation email
@@ -24,8 +24,7 @@ export default function SignUpPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
-
+        body: JSON.stringify({ email }),
       });
 
       if (!response.ok) {
@@ -37,7 +36,7 @@ export default function SignUpPage() {
       console.error('Error sending confirmation email:', error);
     }
 
-    router.push('/auth/sign-in'); // Redirect to sign-in page after sign-up
+    router.push('/dashboard');
   };
 
   return (
