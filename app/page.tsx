@@ -1,11 +1,20 @@
 "use client";
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
   const router = useRouter();
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      router.push("/dashboard"); // Redirigir al dashboard
+    }
+  }, [router]);
+
+  
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-green-500">
       <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-lg text-center">

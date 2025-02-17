@@ -1,5 +1,3 @@
-// prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,7 +5,16 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+  company  Company[]
+}
+
 
 model Company {
   id          String   @id @default(cuid())
@@ -17,8 +24,8 @@ model Company {
   website     String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id])
   documents   Document[]
   integrations Integration[]
 }
@@ -31,22 +38,25 @@ model Document {
   company   Company  @relation(fields: [companyId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([companyId])
 }
 
 model Integration {
   id        String   @id @default(cuid())
   name      String
   type      String
-  status    String
+  status    IntegrationStatus
   companyId String
   company   Company  @relation(fields: [companyId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([companyId])
 }
 
-model User {
-  id        String    @id @default(cuid())
-  email     String    @unique
-  password  String
-  companies Company[] // Relación con el modelo Company
+enum IntegrationStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
 }

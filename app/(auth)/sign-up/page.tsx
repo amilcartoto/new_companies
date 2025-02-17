@@ -1,43 +1,53 @@
 "use client";
-
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { generateToken } from '@/lib/auth';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [nationality, setNationality] = useState('');
-  const [city, setCity] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [city, setCity] = useState("");
+  const [error, setError] = useState(""); // Estado para manejar errores
+  const [loading, setLoading] = useState(false); // Estado para manejar la carga
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate user registration
-    const token = generateToken(JSON.stringify({ email, nationality, city }));
-    localStorage.setItem('token', token);
-
-    // Call the server-side API to send the confirmation email
+  
+    setLoading(true);
+    setError(""); // Resetear error antes de cada intento
+  
     try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
+      const res = await fetch("/api/auth/sign-up", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to send confirmation email');
+  
+      if (!res.ok) {
+        // Si la API responde con error, obtenemos el texto en vez de JSON
+        const errorText = await res.text();
+        throw new Error(`Error: ${res.status} - ${errorText}`);
       }
-
-      console.log('Confirmation email sent');
+  
+      // Verificamos si hay contenido antes de intentar convertirlo a JSON
+      const textData = await res.text();
+      const data = textData ? JSON.parse(textData) : null;
+  
+      if (data?.token) {
+        localStorage.setItem("token", data.token);
+        router.push("/sign-in"); // 🔄 Redirigir a sign-in después del registro
+      } else {
+        throw new Error(data?.error || "Respuesta inválida del servidor");
+      }
     } catch (error) {
-      console.error('Error sending confirmation email:', error);
+      setError(error instanceof Error ? error.message : "Error desconocido");
+      console.error("Error en el registro:", error);
+    } finally {
+      setLoading(false);
     }
-
-    router.push('/dashboard');
   };
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 to-pink-500">
@@ -78,12 +88,14 @@ export default function SignUpPage() {
           />
           <button
             type="submit"
-            className="w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            className="w-full py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50"
+            disabled={loading}
           >
-            Sign Up
+            {loading ? "Cargando..." : "Sign Up"}
           </button>
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
         </form>
       </div>
     </div>
   );
-} 
+}

@@ -1,4 +1,4 @@
-import * as jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 // Asegúrate de que la clave secreta esté disponible en tus variables de entorno
 const SECRET_KEY = process.env.JWT_SECRET || 'Lautaro01'; // Clave secreta predeterminada

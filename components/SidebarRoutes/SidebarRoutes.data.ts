@@ -10,7 +10,7 @@ import { BarChart4,
 
  export const dataGeneralSidebar = [
     {
-        Icon: PanelsTopLeft ,
+        Icon: PanelsTopLeft,
         label: "Dashboard",
         href: "/"
     },
@@ -22,9 +22,9 @@ import { BarChart4,
     {
         Icon: Calendar,
         label: "Calendar",
-        href: "/task"
+        href: "/calendar"
     },
- ]
+];
 
  export const dataToolsSidebar = [
     {

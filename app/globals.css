@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 html, body, :root {
   height: 100%;
 } 
@@ -73,6 +72,71 @@ body {
   }
 }
 
+/* Estilos para el calendario en ambos temas */
+.react-calendar {
+  background-color: var(--background); /* Fondo que se adapta al tema */
+  color: var(--foreground); /* Color de texto que se adapta al tema */
+}
+
+.react-calendar__tile {
+  color: var(--foreground); /* Color de los números de los días */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+/* Estilo para las casillas del calendario con días */
+.react-calendar__tile--active {
+  background-color: var(--primary); /* Fondo de los días activos */
+  color: var(--primary-foreground); /* Color de los números de días activos */
+}
+
+/* Estilo para el día con evento */
+.react-calendar__tile.highlight {
+  background-color: var(--chart-1); /* Color de los días con eventos */
+}
+
+/* Estilo para los días del calendario en el tema oscuro */
+.dark .react-calendar__tile {
+  color: var(--primary-foreground); /* Color de los números en el tema oscuro */
+}
+
+/* Fondo de la casilla activa en tema oscuro */
+.dark .react-calendar__tile--active {
+  background-color: var(--primary-foreground);
+  color: var(--primary); /* Cambiar el color de los números de los días */
+}
+
+/* Día con evento en tema oscuro */
+.dark .react-calendar__tile.highlight {
+  background-color: var(--chart-3); /* Cambiar color de fondo para días con eventos */
+}
+
+.react-calendar__tile.highlight {
+  background-color: #f0f8ff;
+}
+/* faq.css */
+.faq-container {
+  /* Fondo y color de texto predeterminado */
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Estilo para las preguntas */
+.faq-question {
+  color: var(--primary);
+}
+
+/* Estilo para el tema oscuro */
+.dark .faq-container {
+  background-color: var(--background-dark);
+  color: var(--foreground-dark);
+}
+
+.dark .faq-question {
+  color: var(--primary-dark);
+}
+
+
+/* En tu archivo global de CSS, por ejemplo: styles/globals.css */
 @layer base {
   * {
     @apply border-border;

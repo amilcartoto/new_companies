@@ -1,11 +1,11 @@
 "use client";
 
-import { LastCustomers } from "./LastCustomers";
-import { CardSummary } from "./components/CardSummary/";
+import { LastCustomers } from "../LastCustomers";
+import { CardSummary } from "../components/CardSummary";
 import { BookOpenCheck, UsersRound, Waypoints } from "lucide-react";
-import { Salesdistibutors } from "./components/Salesdistributors";
-import { TotalSuscribers } from "./components/TotalSuscribers";
-import { ListIntegrations } from "./components/ListIntegrations";
+import { Salesdistibutors } from "../components/Salesdistributors";
+import { TotalSuscribers } from "../components/TotalSuscribers";
+import { ListIntegrations } from "../components/ListIntegrations";
 
 
 
